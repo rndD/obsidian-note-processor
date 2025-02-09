@@ -1,7 +1,7 @@
 const esbuild = require('esbuild');
 
 esbuild.build({
-  entryPoints: ['main.ts'], // Adjust the entry point as needed
+  entryPoints: ['src/main.ts'], // Adjust the entry point as needed
   bundle: true,
   outfile: 'main.js', // Adjust the output file as needed
   platform: 'node', // or 'browser' depending on your target
