@@ -1,4 +1,4 @@
-# Obsidian Random Unprocessed Note
+# Obsidian
 
 A simple plugin for [Obsidian](https://obsidian.md) that helps you process your notes systematically by providing quick access to random unprocessed notes and managing global processing status.
 
