@@ -1,0 +1,9 @@
+{
+	"id": "rndd_note-processor",
+	"name": "Note Processor",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Opens random notes with #not_processed tag or without #processed and allows marking them as processed.",
+	"author": "rndD",
+	"isDesktopOnly": false
+} 
