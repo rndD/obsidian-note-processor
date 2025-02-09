@@ -5,22 +5,27 @@ export class FileProcessor {
     constructor(private app: App) {}
 
     async isUnprocessed(file: TFile): Promise<boolean> {
-        const content = await this.app.vault.read(file);
-        const lines = content.split('\n').slice(0, 5); // Get the first 5 lines
-        const hasNotProcessedTag = content.includes(NOT_PROCESSED_TAG);
-        const lacksProcessedTag = !lines.some(line => line.includes(PROCESSED_TAG));
-        return hasNotProcessedTag || lacksProcessedTag;
+        const cache = this.app.metadataCache.getFileCache(file);
+        if (!cache) return true; // If no cache, consider unprocessed
+
+        const tags = cache.tags?.map(t => t.tag) || [];
+        const hasProcessedTag = tags.includes(PROCESSED_TAG);
+        const hasNotProcessedTag = tags.includes(NOT_PROCESSED_TAG);
+
+        return hasNotProcessedTag || !hasProcessedTag;
     }
 
     async markProcessed(file: TFile): Promise<void> {
         let content = await this.app.vault.read(file);
+        const cache = this.app.metadataCache.getFileCache(file);
+        const tags = cache?.tags?.map(t => t.tag) || [];
         
         // If already processed, do nothing
-        if (content.includes(PROCESSED_TAG)) {
+        if (tags.includes(PROCESSED_TAG)) {
             return;
         }
 
-        if (content.includes(NOT_PROCESSED_TAG)) {
+        if (tags.includes(NOT_PROCESSED_TAG)) {
             content = content.replace(NOT_PROCESSED_TAG, PROCESSED_TAG);
         } else {
             const lines = content.split('\n');
@@ -37,9 +42,11 @@ export class FileProcessor {
 
     async markUnprocessed(file: TFile): Promise<void> {
         let content = await this.app.vault.read(file);
+        const cache = this.app.metadataCache.getFileCache(file);
+        const tags = cache?.tags?.map(t => t.tag) || [];
         
         // If already unprocessed or doesn't have processed tag, do nothing
-        if (content.includes(NOT_PROCESSED_TAG) || !content.includes(PROCESSED_TAG)) {
+        if (tags.includes(NOT_PROCESSED_TAG) || !tags.includes(PROCESSED_TAG)) {
             return;
         }
 

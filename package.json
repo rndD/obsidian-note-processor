@@ -1,17 +1,15 @@
 {
-	"name": "rndd-note-processor",
+	"name": "random-unprocessed-note",
 	"version": "1.0.0",
 	"description": "Opens random notes with #not_processed tag and allows marking them as processed.",
 	"main": "main.js",
     
 	"scripts": {
-		"dev": "node esbuild.config.mjs",
-		"build": "node esbuild.config.js",
-		"version": "node version-bump.mjs && git add manifest.json versions.json"
+		"build": "node esbuild.config.js"
 	},
 	"keywords": [],
-	"author": "",
-	"license": "MIT",
+	"author": "rndD",
+	"license": "UNLICENSED",
 	"devDependencies": {
 		"@types/node": "^16.11.6",
 		"@typescript-eslint/eslint-plugin": "^5.2.0",

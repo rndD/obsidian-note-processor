@@ -1,6 +1,14 @@
-node_modules
-main.js
-main.js.map
+# Intellij
+*.iml
+.idea
 
+# npm
 node_modules
-dist
+package-lock.json
+
+# build
+main.js
+*.js.map
+
+# macOS
+.DS_Store
