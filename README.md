@@ -1,6 +1,6 @@
 # Obsidian Random Unprocessed Note
 
-A simple plugin for [Obsidian](https://obsidian.md) that helps you process your notes systematically by providing quick access to random unprocessed notes and managing their processing status.
+A simple plugin for [Obsidian](https://obsidian.md) that helps you process your notes systematically by providing quick access to random unprocessed notes and managing global processing status.
 
 ## Features
 
@@ -34,7 +34,6 @@ This plugin adds three commands to Obsidian:
    - Marks a processed note as unprocessed
    - Changes `#processed` tag to `#not_processed`
    - Useful if you need to revisit a note later
-
 
 ### Manual Installation
 

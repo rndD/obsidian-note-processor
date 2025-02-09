@@ -15,6 +15,11 @@ export class FileProcessor {
     async markProcessed(file: TFile): Promise<void> {
         let content = await this.app.vault.read(file);
         
+        // If already processed, do nothing
+        if (content.includes(PROCESSED_TAG)) {
+            return;
+        }
+
         if (content.includes(NOT_PROCESSED_TAG)) {
             content = content.replace(NOT_PROCESSED_TAG, PROCESSED_TAG);
         } else {
@@ -32,6 +37,12 @@ export class FileProcessor {
 
     async markUnprocessed(file: TFile): Promise<void> {
         let content = await this.app.vault.read(file);
+        
+        // If already unprocessed or doesn't have processed tag, do nothing
+        if (content.includes(NOT_PROCESSED_TAG) || !content.includes(PROCESSED_TAG)) {
+            return;
+        }
+
         content = content.replace(PROCESSED_TAG, NOT_PROCESSED_TAG);
         await this.app.vault.modify(file, content);
     }

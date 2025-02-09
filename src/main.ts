@@ -1,5 +1,5 @@
 import { App, Plugin, TFile, Notice, TAbstractFile } from 'obsidian';
-import { FULL_RESCAN_INTERVAL } from './constants';
+import { FULL_RESCAN_INTERVAL, PROCESSED_TAG } from './constants';
 import { FileProcessor } from './services/FileProcessor';
 import { CacheManager } from './services/CacheManager';
 import { StatusBar } from './ui/StatusBar';
@@ -114,6 +114,12 @@ export default class RandomNoteProcessor extends Plugin {
             return;
         }
 
+        const content = await this.app.vault.read(activeFile);
+        if (content.includes(PROCESSED_TAG)) {
+            new Notice('Note is already processed!');
+            return;
+        }
+
         await this.fileProcessor.markProcessed(activeFile);
         await this.cacheManager.updateFileInCache(activeFile);
         this.updateStatusBar();
@@ -125,6 +131,12 @@ export default class RandomNoteProcessor extends Plugin {
         
         if (!activeFile) {
             new Notice('No active file!');
+            return;
+        }
+
+        const content = await this.app.vault.read(activeFile);
+        if (!content.includes(PROCESSED_TAG)) {
+            new Notice('Note is not processed yet!');
             return;
         }
 
