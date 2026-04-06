@@ -1,10 +1,10 @@
 {
-	"id": "random-unprocessed-note",
-	"name": "Random Unprocessed Note",
-	"version": "1.0.0",
-	"minAppVersion": "0.15.0",
-	"description": "Opens random notes with #not_processed tag and allows marking them as processed.",
-	"author": "rndD",
-	"authorUrl": "https://github.com/rndD",
-	"isDesktopOnly": false
+  "id": "random-unprocessed-note",
+  "name": "Random Unprocessed Note",
+  "version": "1.0.1",
+  "minAppVersion": "0.15.0",
+  "description": "Opens random notes with #not_processed tag and allows marking them as processed.",
+  "author": "rndD",
+  "authorUrl": "https://github.com/rndD",
+  "isDesktopOnly": false
 }
